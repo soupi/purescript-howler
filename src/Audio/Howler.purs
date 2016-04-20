@@ -1,0 +1,161 @@
+-- | A subset of the howler.js API. play sounds in your browser with ease!
+
+module Audio.Howler
+    ( HOWLER
+    , Howl
+    , Props
+    , Fade
+    , new
+    , play
+    , stop
+    , pause
+    , mute
+    , unmute
+    , fade
+    , loop
+    , setVolume
+    , setCursorPosition
+    , fadeIn
+    , fadeOut
+    , defaultProps
+    ) where
+
+import Prelude (Unit)
+import Data.Maybe (Maybe(..))
+import Data.Nullable (Nullable, toNullable)
+import Control.Monad.Eff (Eff)
+
+-- | An effect type for Howler
+foreign import data HOWLER :: !
+
+-- | A type for howler objects. these are pointers for mutable sound objects
+-- | Apply a function on them to change them.
+foreign import data Howl :: *
+
+foreign import muteAll   :: forall e. Eff (howler :: HOWLER | e) Unit
+foreign import unmuteAll :: forall e. Eff (howler :: HOWLER | e) Unit
+foreign import volumeAll :: forall e. Number -> Eff (howler :: HOWLER | e) Unit
+
+foreign import newHowl      :: forall e. JSProps -> Eff (howler :: HOWLER | e) Howl
+foreign import playHowl     :: forall e. Howl    -> Eff (howler :: HOWLER | e) Unit
+foreign import stopHowl     :: forall e. Howl    -> Eff (howler :: HOWLER | e) Unit
+foreign import pauseHowl    :: forall e. Howl    -> Eff (howler :: HOWLER | e) Unit
+foreign import muteHowl     :: forall e. Howl    -> Eff (howler :: HOWLER | e) Unit
+foreign import unmuteHowl   :: forall e. Howl    -> Eff (howler :: HOWLER | e) Unit
+foreign import fadeHowl     :: forall e. Fade    -> Howl -> Eff (howler :: HOWLER | e) Unit
+foreign import loopHowl     :: forall e. Boolean -> Howl -> Eff (howler :: HOWLER | e) Unit
+foreign import positionHowl :: forall e. Number  -> Howl -> Eff (howler :: HOWLER | e) Unit
+foreign import volumeHowl   :: forall e. Number  -> Howl -> Eff (howler :: HOWLER | e) Unit
+
+type JSProps =
+  { urls     :: Array String
+  , format   :: Nullable String
+  , autoplay :: Boolean
+  , buffer   :: Boolean
+  , loop     :: Boolean
+  , volume   :: Number
+  , rate     :: Number
+  }
+
+
+-- | Properties for a Howl object
+type Props =
+    -- | State the path of sound resources. for example: ["sound1.mp3","sound2.ogg" ]
+    --   This is required.
+  { urls     :: Array String
+    -- | State the format of the resource you want to play. this is optional
+  , format   :: Maybe String 
+    -- | Start playing when the sound resource is loaded. this is optional
+  , autoplay :: Boolean
+    -- | Force HTML5 Audio. default is false.
+  , buffer   :: Boolean
+    -- | Loop - automatically play again the sound resource went it finish playing. default is false
+  , loop     :: Boolean
+    -- | Control the volume of the sound. between 0.0 and 1.0. default is 1.0
+  , volume   :: Number
+    -- | Speed of playback. default is 1.0 which is normal speed. negative values will play resource in reverse
+  , rate     :: Number
+  }
+
+-- | Default properties for your convenience. values are stated in Props doc.
+-- | Please override 'urls' with your requested sound resource paths
+defaultProps :: Props
+defaultProps =
+  { urls: []
+  , format: Nothing
+  , autoplay: false
+  , buffer: false
+  , loop: false
+  , volume: 1.0
+  , rate: 1.0
+  }
+
+
+-- | Fade style
+type Fade =
+  -- | Start volume level. from 0.0 to 1.0
+  { from     :: Number
+  -- | End volume level. from 0.0 to 1.0
+  , to       :: Number
+  -- | How long to transition from 'from' to 'to' in miliseconds
+  , duration :: Number
+  }
+
+-- | Simple fade-in with 1 second delay
+fadeIn :: Fade
+fadeIn =
+  { from: 0.0
+  , to: 1.0
+  , duration: 1000.0
+  }
+
+-- | Simple fade-out with 1 second delay
+fadeOut :: Fade
+fadeOut =
+  { from: 0.0
+  , to: 1.0
+  , duration: 1000.0
+  }
+
+
+-- | Create a new Howl object
+new :: forall e. Props -> Eff (howler :: HOWLER | e) Howl
+new props = newHowl props { format = toNullable props.format }
+
+-- | Play sound resource
+play :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
+play = playHowl
+
+-- | Stop playing sound resource
+stop :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
+stop = stopHowl
+
+-- | Pause sound resource
+pause :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
+pause = pauseHowl
+
+-- | Mute sound resource
+mute :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
+mute = muteHowl
+
+-- | Unmute sound resource
+unmute :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
+unmute = unmuteHowl
+
+-- | Fade sound resource
+fade :: forall e. Fade -> Howl -> Eff (howler :: HOWLER | e) Unit
+fade = fadeHowl
+
+-- | Set loop property of sound resource
+loop :: forall e. Boolean -> Howl -> Eff (howler :: HOWLER | e) Unit
+loop = loopHowl
+
+-- | Set volume property of sound resource. from 0.0 to 1.0
+setVolume :: forall e. Number -> Howl -> Eff (howler :: HOWLER | e) Unit
+setVolume = volumeHowl
+
+-- | Set cursor position of playback
+setCursorPosition :: forall e. Number -> Howl -> Eff (howler :: HOWLER | e) Unit
+setCursorPosition = positionHowl
+
+

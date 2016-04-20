@@ -1,0 +1,30 @@
+{
+  "name": "purescript-howler",
+  "version": "0.1.0",
+  "authors": [
+    "Gil Mizrahi <soupiral@gmail.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/soupi/purescript-howler.git"
+  },
+  "license": "MIT",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "*",
+    "purescript-maybe": "*",
+    "purescript-nullable": "*",
+    "purescript-control": "*",
+    "purescript-console": "*",
+    "purescript-arrays": "*",
+    "purescript-eff": "*"
+  }
+}
