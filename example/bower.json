@@ -1,5 +1,5 @@
 {
-  "name": "purescript-howler",
+  "name": "purescript-howler-example",
   "version": "0.1.0",
   "authors": [
     "Gil Mizrahi <soupiral@gmail.com>"
@@ -16,15 +16,13 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "output",
-    "example",
-    "audio"
+    "output"
   ],
   "dependencies": {
     "purescript-prelude": "*",
-    "purescript-maybe": "*",
-    "purescript-nullable": "*",
     "purescript-control": "*",
-    "purescript-eff": "*"
+    "purescript-console": "*",
+    "purescript-eff": "*",
+    "purescript-howler": "../"
   }
 }

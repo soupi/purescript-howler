@@ -5,3 +5,11 @@
 /.psci*
 /src/.webpack.js
 .DS_Store
+
+example/bower_components/
+example/node_modules/
+example/.pulp-cache/
+example/output/
+example/.psci*
+example/src/.webpack.js
+.DS_Store
