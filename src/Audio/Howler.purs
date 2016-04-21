@@ -11,12 +11,12 @@ module Audio.Howler
     , pause
     , mute
     , unmute
-    , fade
+--    , fade
     , loop
     , setVolume
     , setCursorPosition
-    , fadeIn
-    , fadeOut
+--    , fadeIn
+--    , fadeOut
     , defaultProps
     ) where
 
@@ -100,7 +100,8 @@ type Fade =
   , duration :: Number
   }
 
--- | Simple fade-in with 1 second delay
+{-
+--   Simple fade-in with 1 second delay
 fadeIn :: Fade
 fadeIn =
   { from: 0.0
@@ -108,14 +109,14 @@ fadeIn =
   , duration: 1000.0
   }
 
--- | Simple fade-out with 1 second delay
+--   Simple fade-out with 1 second delay
 fadeOut :: Fade
 fadeOut =
-  { from: 0.0
-  , to: 1.0
+  { from: 1.0
+  , to: 0.0
   , duration: 1000.0
   }
-
+-}
 
 -- | Create a new Howl object
 new :: forall e. Props -> Eff (howler :: HOWLER | e) Howl
@@ -141,9 +142,9 @@ mute = muteHowl
 unmute :: forall e. Howl -> Eff (howler :: HOWLER | e) Unit
 unmute = unmuteHowl
 
--- | Fade sound resource
-fade :: forall e. Fade -> Howl -> Eff (howler :: HOWLER | e) Unit
-fade = fadeHowl
+--   Fade sound resource
+-- fade :: forall e. Fade -> Howl -> Eff (howler :: HOWLER | e) Unit
+-- fade = fadeHowl
 
 -- | Set loop property of sound resource
 loop :: forall e. Boolean -> Howl -> Eff (howler :: HOWLER | e) Unit
