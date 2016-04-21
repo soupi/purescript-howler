@@ -59,22 +59,21 @@ type JSProps =
 
 
 -- | Properties for a Howl object
+-- | * `urls` - State the path of sound resources. for example: ["sound1.mp3","sound2.ogg" ]. This is required.
+-- | * `format` - State the format of the resource you want to play. this is optional
+-- | * `volume` - Control the volume of the sound. between 0.0 and 1.0. default is 1.0
+-- | * `rate` - Speed of playback. default is 1.0 which is normal speed. negative values will play resource in reverse
+-- | * `autoplay` - Start playing when the sound resource is loaded. this is optional
+-- | * `loop` - Automatically play again the sound resource went it finish playing. default is false
+-- | * `buffer` - Force HTML5 Audio. default is false.
 type Props =
-    -- | State the path of sound resources. for example: ["sound1.mp3","sound2.ogg" ]
-    --   This is required.
   { urls     :: Array String
-    -- | State the format of the resource you want to play. this is optional
-  , format   :: Maybe String 
-    -- | Start playing when the sound resource is loaded. this is optional
-  , autoplay :: Boolean
-    -- | Force HTML5 Audio. default is false.
-  , buffer   :: Boolean
-    -- | Loop - automatically play again the sound resource went it finish playing. default is false
-  , loop     :: Boolean
-    -- | Control the volume of the sound. between 0.0 and 1.0. default is 1.0
+  , format   :: Maybe String
   , volume   :: Number
-    -- | Speed of playback. default is 1.0 which is normal speed. negative values will play resource in reverse
   , rate     :: Number
+  , autoplay :: Boolean
+  , loop     :: Boolean
+  , buffer   :: Boolean
   }
 
 -- | Default properties for your convenience. values are stated in Props doc.
@@ -83,21 +82,21 @@ defaultProps :: Props
 defaultProps =
   { urls: []
   , format: Nothing
-  , autoplay: false
-  , buffer: false
-  , loop: false
   , volume: 1.0
   , rate: 1.0
+  , autoplay: false
+  , loop: false
+  , buffer: false
   }
 
 
 -- | Fade style
+-- | * `from` - Start volume level. from 0.0 to 1.0
+-- | * `to` - End volume level. from 0.0 to 1.0
+-- | * `duration` - How long to transition from 'from' to 'to' in miliseconds
 type Fade =
-  -- | Start volume level. from 0.0 to 1.0
   { from     :: Number
-  -- | End volume level. from 0.0 to 1.0
   , to       :: Number
-  -- | How long to transition from 'from' to 'to' in miliseconds
   , duration :: Number
   }
 
