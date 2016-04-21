@@ -1,3 +1,10 @@
+<a href="https://pursuit.purescript.org/packages/purescript-howler">
+  <img src="https://pursuit.purescript.org/packages/purescript-howler/badge"
+    alt="purescript-howler on Pursuit">
+  </img>
+</a>
+
+
 purescript-howler
 -----------------
 
@@ -27,3 +34,5 @@ main = do
   log "playing"
 
 ```
+
+[Link to API Documentation](https://pursuit.purescript.org/packages/purescript-howler/)
