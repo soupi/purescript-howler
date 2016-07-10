@@ -4,7 +4,7 @@ module Audio.Howler
     ( HOWLER
     , Howl
     , Props
-    , Fade
+--    , Fade
     , new
     , play
     , stop

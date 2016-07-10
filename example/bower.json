@@ -19,10 +19,10 @@
     "output"
   ],
   "dependencies": {
-    "purescript-prelude": "*",
-    "purescript-control": "*",
-    "purescript-console": "*",
-    "purescript-eff": "*",
+    "purescript-prelude": "^1.0.1",
+    "purescript-control": "^1.0.0",
+    "purescript-console": "^1.0.0",
+    "purescript-eff": "^1.0.0",
     "purescript-howler": "../"
   }
 }
