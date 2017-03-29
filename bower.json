@@ -1,6 +1,6 @@
 {
   "name": "purescript-howler",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "authors": [
     "Gil Mizrahi <soupiral@gmail.com>"
   ],
@@ -21,10 +21,10 @@
     "audio"
   ],
   "dependencies": {
-    "purescript-prelude": "^2.1.0",
-    "purescript-maybe": "^2.0.1",
-    "purescript-nullable": "^2.0.0",
-    "purescript-control": "^2.0.0",
-    "purescript-eff": "^2.0.0"
+    "purescript-prelude": "^3.0.0",
+    "purescript-maybe": "^3.0.0",
+    "purescript-nullable": "^3.0.0",
+    "purescript-control": "^3.0.0",
+    "purescript-eff": "^3.0.0"
   }
 }

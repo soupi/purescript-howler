@@ -23,14 +23,14 @@ module Audio.Howler
 import Prelude (Unit)
 import Data.Maybe (Maybe(..))
 import Data.Nullable (Nullable, toNullable)
-import Control.Monad.Eff (Eff)
+import Control.Monad.Eff (Eff, kind Effect)
 
 -- | An effect type for Howler
-foreign import data HOWLER :: !
+foreign import data HOWLER :: Effect
 
 -- | A type for howler objects. these are pointers for mutable sound objects
 -- | Apply a function on them to change them.
-foreign import data Howl :: *
+foreign import data Howl :: Type
 
 foreign import muteAll   :: forall e. Eff (howler :: HOWLER | e) Unit
 foreign import unmuteAll :: forall e. Eff (howler :: HOWLER | e) Unit
